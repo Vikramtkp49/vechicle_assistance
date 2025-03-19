@@ -7,7 +7,7 @@
     <title>Request Assistance</title>
    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9OORBuQZ2cpNio5qjMOt8beoNH_bnH3U&callback=initMap" async defer></script>
  <style>
-       /* General Styles */
+        /* General Styles */
 * {
     margin: 0;
     padding: 0;
@@ -16,7 +16,9 @@
 }
 
 body {
-    background: linear-gradient(135deg, #f4f4f4, #ffffff);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.378), rgba(240, 240, 240, 0.252)),
+                url('image1.jpg') no-repeat center center fixed;
+    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,10 +28,10 @@ body {
 .main-container {
     width: 100%;
     max-width: 400px;
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0); /* Semi-transparent white for better readability */
     padding: 20px;
     border-radius: 20px;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
     overflow: hidden;
     animation: fadeIn 0.7s ease-in-out;
 }
@@ -152,6 +154,33 @@ body {
     border-radius: 10px;
     border: 1px solid #ddd;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .main-container {
+        max-width: 95%;
+        padding: 15px;
+    }
+
+    .title {
+        font-size: 20px;
+    }
+
+    #map {
+        height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 18px;
+    }
+
+    #request-btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
 }
 
 /* Animations */
