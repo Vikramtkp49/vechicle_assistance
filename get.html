@@ -7,117 +7,165 @@
     <title>Request Assistance</title>
    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9OORBuQZ2cpNio5qjMOt8beoNH_bnH3U&callback=initMap" async defer></script>
  <style>
-        /* General Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+       /* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
 
-        body {
-            background: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+body {
+    background: linear-gradient(135deg, #f4f4f4, #ffffff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
 
-        .main-container {
-            width: 100%;
-            max-width: 400px;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+.main-container {
+    width: 100%;
+    max-width: 400px;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    animation: fadeIn 0.7s ease-in-out;
+}
 
-        .centered-flex {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+.centered-flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-        .form-container {
-            width: 100%;
-        }
+.form-container {
+    width: 100%;
+}
 
-        .title {
-            font-size: 22px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            text-align: center;
-        }
+.title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+    letter-spacing: 1px;
+}
 
-        .field {
-            width: 100%;
-            margin-bottom: 15px;
-            position: relative;
-        }
+.field {
+    width: 100%;
+    margin-bottom: 15px;
+    position: relative;
+}
 
-        .field input,
-        .field select,
-        .field textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
+.field input,
+.field select,
+.field textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background: #f9f9f9;
+}
 
-        .field span {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: gray;
-        }
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+    outline: none;
+    border-color: #ff6600;
+    background: #ffffff;
+    box-shadow: 0 0 5px rgba(255, 102, 0, 0.5);
+}
 
-        .btn-small {
-            background: #ff6600;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+.field span {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+    pointer-events: none;
+    font-size: 18px;
+}
 
-        .btn-container {
-            width: 100%;
-            text-align: center;
-        }
+.btn-small {
+    background: #ff6600;
+    color: #fff;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
 
-        #request-btn {
-            background: #ff6600;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 18px;
-            cursor: pointer;
-        }
+.btn-small:hover {
+    background: #ff4500;
+    transform: scale(1.1);
+}
 
-        #request-btn:hover {
-            background: #ff4500;
-        }
+.btn-container {
+    text-align: center;
+}
 
-        .signup {
-            text-align: center;
-            margin-top: 15px;
-        }
+#request-btn {
+    background: #ff6600;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
 
-        .signup a {
-            text-decoration: none;
-            color: #ff6600;
-        }
+#request-btn:hover {
+    background: #ff4500;
+    box-shadow: 0 5px 15px rgba(255, 102, 0, 0.4);
+    transform: translateY(-3px);
+}
 
-        #map {
-            width: 100%;
-            height: 300px;
-            margin-top: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
+.signup {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.signup a {
+    text-decoration: none;
+    color: #ff6600;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.signup a:hover {
+    color: #ff4500;
+}
+
+#map {
+    width: 100%;
+    height: 300px;
+    margin-top: 15px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
     </style>
 </head>
 
