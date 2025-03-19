@@ -4,164 +4,298 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vehicle Breakdown Assistance</title>
+    <title>Roadside Help - 24/7 Assistance</title>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
     <style>
-        /* Reset Styles */
+        /* General Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
 
         body {
-            background-image: url(bg.jpg);
-            background-size: cover;
+            background: #111111;
+            color: white;
         }
 
-        /* Header (Navigation) */
-        header {
+        body 
+        {
+        font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #f4f4f4, #e1e1e1);
+        }
+
+        .header {
+            background: linear-gradient(to right, #444, #444);
+            color: white;
+            padding: 10px 20px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.7);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
+            justify-content: space-between;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .logo {
-            font-size: 24px;
-            color: white;
+        .header img {
+            height: 50px;
+            width: 50px;
+            border-radius: 50%; /* Makes the logo circular */
+            object-fit: cover;
+            margin-right: 20px;
+            /* Blending effect */
+            box-shadow: 0px 0px 10px 5px rgba(255, 255, 255, 0.671); /* Glowing edge */
+        }
+
+        .header h1 {
+            margin: 0 auto; /* Centers the heading */
+            font-size: 28px;
+            letter-spacing: 2px;
             font-weight: bold;
+            text-align: center;
+            flex: 1; /* Allow it to center relative to the flex container */
         }
 
-        nav ul {
-            list-style: none;
-            display: flex;
-        }
-
-        nav ul li {
-            margin: 0 10px;
-        }
-
-        nav ul li a {
+        .header a {
             text-decoration: none;
-            color: white;
+            color: #ecbe499a;
             font-size: 18px;
+            font-weight: 500;
+            transition: color 0.3s ease-in-out;
         }
 
-        nav ul li .btn {
-            background: #ff6600;
-            padding: 2px 15px;
-            border-radius: 5px;
+        .header a:hover {
+            color: #f39c12;
         }
+        
 
-        nav ul li .btn:hover {
-            background: #ff4500;
-        }
-
-        /* Image Slider */
-        .slider {
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
+        /* Hero Section */
+        .hero {
+            background: url('image2.jpg') no-repeat center center/cover;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 20px;
             position: relative;
         }
 
-        .slides {
-            display: flex;
-            width: 220%;
-            height: 110%;
-            animation: slide 10s infinite;
-        }
-
-        .slides img {
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            background: rgba(0, 0, 0, 0.258);
         }
 
-        /* Content Section */
-        .content {
-            text-align: center;
-            padding: 50px;
-            color: white;
-            position: absolute;
-            top: 60%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.6);
-            padding: 20px;
-            border-radius: 10px;
+        .hero * {
+            position: relative;
+            z-index: 1;
         }
 
-        .content h1 {
+        .hero h1 {
             font-size: 40px;
+            font-weight: 700;
         }
 
-        .content p {
-            font-size: 20px;
-            margin: 10px 0;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background: #ff6600;
-            color: white;
-            text-decoration: none;
+        .hero p {
             font-size: 18px;
-            border-radius: 5px;
+            margin-top: 10px;
+            max-width: 600px;
         }
 
-        .btn:hover {
+        .hero .cta-btn {
+            background: #ff000000;
+            color: rgb(255, 255, 255);
+            padding: 12px 24px;
+            font-size: 18px;
+            border-radius: 6px;
+            margin-top: 20px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .hero .cta-btn:hover {
             background: #ff4500;
+            transform: scale(1.05);
         }
 
-        /* Slider Animation */
-        @keyframes slide {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-110%); }
-            290% { transform: translateX(-95%); }
-            120% { transform: translateX(0); }
+        /* Features Section */
+        .features {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            padding: 50px 10%;
+            background: #3a3835be;
+            text-align: center;
+        }
+
+        .feature-box {
+            max-width: 300px;
+            margin: 15px;
+        }
+
+        .feature-box i {
+            font-size: 35px;
+            color: #ff6600;
+            margin-bottom: 10px;
+        }
+
+        .feature-box h3 {
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        /* What's Included Section */
+        .included {
+            background: #f8f8f8;
+            color: black;
+            padding: 50px 10%;
+            text-align: left;
+        }
+
+        .included h2 {
+            font-size: 30px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .included-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .included-item img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+
+        .included-item h3 {
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+
+        .included-item p {
+            font-size: 16px;
+        }
+
+        /* Footer */
+        .footer {
+            background: black;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+
+            .features {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .feature-box {
+                width: 100%;
+                max-width: 350px;
+            }
+
+            .included-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .included-item img {
+                margin-bottom: 10px;
+            }
         }
     </style>
 </head>
 
 <body>
-    <!-- Navigation Bar -->
-    <header>
-        <div class="logo">🚗 Roadside Help</div>
-        <nav>
-            <ul>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="login.html" class="btn">Login</a></li>
-            </ul>
+    <!-- Header -->
+    <header class="header">
+        <div class="header">
+            <img src="logo1.png" alt="Logo"> <!-- Replace "logo.png" with the path to your logo -->
+            <h1>Roadside Help</h1>
+        </div>
+	 <nav>
+            
+            <a href="service.html">Services</a>
         </nav>
     </header>
 
-    <!-- Image Slider -->
-    <section class="slider">
-        <div class="slides">
-            <img src="image1.jpg" alt="Vehicle Assistance 1">
-            <img src="image2.jpg" alt="Vehicle Assistance 2">
-            <img src="image3.jpg" alt="Vehicle Assistance 3">
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>24/7 Vehicle Breakdown Assistance</h1>
+        <p>Fast, reliable, and professional roadside help at your fingertips.</p>
+        <a href="#" class="cta-btn">Get Help Now</a>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="feature-box">
+            <i class="fas fa-tools"></i>
+            <h3>Expert Mechanics</h3>
+            <p>Verified professionals ready to assist you.</p>
+        </div>
+        <div class="feature-box">
+            <i class="fas fa-phone-volume"></i>
+            <h3>24/7 Support</h3>
+            <p>Help is available anytime, anywhere.</p>
+        </div>
+        <div class="feature-box">
+            <i class="fas fa-car-battery"></i>
+            <h3>Jumpstart & Repairs</h3>
+            <p>Quick fixes and roadside repairs.</p>
         </div>
     </section>
 
-    <!-- Main Content -->
-    <section class="content">
-        <h1>24/7 Vehicle Breakdown Assistance</h1>
-        <p>Fast, reliable, and professional roadside help at your fingertips.</p>
-        <a href="get.html" class="btn">Get Help Now</a>
+    <!-- What's Included Section -->
+    <section class="included">
+        <h2>What's included:</h2>
+        
+        <div class="included-item">
+            <img src="image1.jpg" alt="mechanic.jpg">
+            <div>
+                <h3>Connect with an Auto Mechanic 1:1</h3>
+                <p>Connect with verified mechanics in minutes, 24/7. You can save you time & money every time you use it.</p>
+            </div>
+        </div>
+
+        <div class="included-item">
+            <img src="mechanic.jpg" alt="Roadside Assistance">
+            <div>
+                <h3>24/7 roadside assistance</h3>
+                <p>Enjoy on-call assistance for help with a flat tire, lock-out, battery, collision, and towing. They’ll even bring you fuel, oil, fluid, and water when you need it.</p>
+            </div>
+        </div>
     </section>
+	
+   
 
-    <script src="script_home.js"></script>
+    <!-- Footer -->
+    <footer class="footer">
+        © 2025 Roadside Help. All Rights Reserved.
+    </footer>
+
 </body>
-
 </html>
