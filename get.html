@@ -251,7 +251,39 @@ body {
     </div>
     
     <script>
-        let map;
+ 
+         document.getElementById("help-form").addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        const formData = new FormData();
+        formData.append("name", document.getElementById("username").value);
+        formData.append("phone", document.getElementById("phone").value);
+        formData.append("latitude", document.getElementById("location").dataset.lat);
+        formData.append("longitude", document.getElementById("location").dataset.lng);
+        formData.append("vehicle", document.getElementById("vehicle").value);
+        formData.append("needs", document.getElementById("needs").value);
+        formData.append("image", document.getElementById("image").files[0]);
+
+        try {
+            const response = await fetch("http://localhost:5000/api/request-assistance", {
+                method: "POST",
+                body: formData
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                alert("Assistance request sent successfully!");
+                window.location.href = "admin-dashboard.html"; // Redirect to admin dashboard
+            } else {
+                alert("Error: " + data.message);
+            }
+        } catch (error) {
+            console.error("Error submitting request:", error);
+            alert("An error occurred. Please try again.");
+        }
+    });
+         // Update location detection to store latitude and longitude
+	let map;
 
         function initMap() {
             map = new google.maps.Map(document.getElementById("map"), {
@@ -259,25 +291,25 @@ body {
                 zoom: 15
             });
         }
-
-        document.getElementById("locate-btn").addEventListener("click", function () {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function (position) {
-                    const latitude = position.coords.latitude;
-                    const longitude = position.coords.longitude;
-                    document.getElementById("location").value = `Lat: ${latitude}, Lng: ${longitude}`;
-                    
-                    const userLocation = new google.maps.LatLng(latitude, longitude);
+    document.getElementById("locate-btn").addEventListener("click", function () {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+                document.getElementById("location").value = `Lat: ${latitude}, Lng: ${longitude}`;
+	  const userLocation = new google.maps.LatLng(latitude, longitude);
                     map.setCenter(userLocation);
                     new google.maps.Marker({ position: userLocation, map: map });
-                }, function () {
-                    alert("Unable to retrieve your location");
-                });
-            } else {
-                alert("Geolocation is not supported by your browser");
-            }
-        });
-    </script>
+                document.getElementById("location").dataset.lat = latitude;
+                document.getElementById("location").dataset.lng = longitude;
+            }, function () {
+                alert("Unable to retrieve your location");
+            });
+        } else {
+            alert("Geolocation is not supported by your browser");
+        }
+    });
+       </script>
 </body>
 
 </html>
